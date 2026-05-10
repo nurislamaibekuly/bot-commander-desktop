@@ -31,6 +31,7 @@ function createSafeContext(initialContext: Record<string, any>): vm.Context {
     import: undefined,
     eval: undefined,
     Function: undefined,
+    fetch,
     globalThis: undefined,
     global: undefined,
     console: undefined

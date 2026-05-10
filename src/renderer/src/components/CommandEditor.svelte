@@ -29,6 +29,7 @@
   const TYPE_MEMBER_LEAVE = 3
   const TYPE_MEMBER_BAN = 4
   const TYPE_REACTION = 5
+  const TYPE_BOT_LOGIN = 6
 
   onMount(() => {
     bottomNavVisible.hide()
@@ -130,13 +131,13 @@
   // Maps each action type to the set of command types it supports,
   // based on what BotListener actually executes for each event type.
   const actionCompatibility: Record<string, Set<number>> = {
-    sendMessage: new Set([TYPE_MESSAGE_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION]),
+    sendMessage: new Set([TYPE_MESSAGE_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION, TYPE_BOT_LOGIN]),
     sendPrivateMessage: new Set([TYPE_MESSAGE_RECEIVED, TYPE_PM_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION]),
-    sendChannelEmbed: new Set([TYPE_MESSAGE_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION]),
+    sendChannelEmbed: new Set([TYPE_MESSAGE_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION, TYPE_BOT_LOGIN]),
     sendPrivateEmbed: new Set([TYPE_MESSAGE_RECEIVED, TYPE_PM_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION]),
-    specificChannel: new Set([TYPE_MESSAGE_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION]),
+    specificChannel: new Set([TYPE_MESSAGE_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION, TYPE_BOT_LOGIN]),
     channelWhitelist: new Set([TYPE_MESSAGE_RECEIVED, TYPE_REACTION]),
-    serverWhitelist: new Set([TYPE_MESSAGE_RECEIVED, TYPE_PM_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION]),
+    serverWhitelist: new Set([TYPE_MESSAGE_RECEIVED, TYPE_PM_RECEIVED, TYPE_MEMBER_JOIN, TYPE_MEMBER_LEAVE, TYPE_MEMBER_BAN, TYPE_REACTION, TYPE_BOT_LOGIN]),
     reaction: new Set([TYPE_MESSAGE_RECEIVED, TYPE_PM_RECEIVED]),
     deleteIf: new Set([TYPE_MESSAGE_RECEIVED]),
     deleteAfter: new Set([TYPE_MESSAGE_RECEIVED]),
@@ -665,6 +666,7 @@
                         <option value={3}>{$t('member-leave')}</option>
                         <option value={4}>{$t('member-ban')}</option>
                         <option value={5}>{$t('reaction')}</option>
+                        <option value={6}>{$t('bot-login')}</option>
                       </select>
                     </div>
                     <div class="form-control">
@@ -686,7 +688,7 @@
                         </label>
                       {/if}
                     </div>
-                    {#if editedCommand.type !== TYPE_MEMBER_JOIN && editedCommand.type !== TYPE_MEMBER_LEAVE && editedCommand.type !== TYPE_MEMBER_BAN}
+                    {#if editedCommand.type !== TYPE_MEMBER_JOIN && editedCommand.type !== TYPE_MEMBER_LEAVE && editedCommand.type !== TYPE_MEMBER_BAN && editedCommand.type !== TYPE_BOT_LOGIN}
                       {#if editedCommand.type !== TYPE_REACTION}
                         <div class="form-control col-span-2">
                           <label class="label" for="command">

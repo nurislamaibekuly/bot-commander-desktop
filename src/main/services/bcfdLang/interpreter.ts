@@ -1150,8 +1150,8 @@ export class Interpreter {
     try {
       // Execute the JavaScript code with timeout protection
       // Wrap in a function to support 'return' statements
-      const wrappedCode = `(function() { ${resolvedCode} })()`
-      const result = vm.runInContext(wrappedCode, ctx.vmContext, {
+      const wrappedCode = `(async function() { ${resolvedCode} })()`
+      const result = await vm.runInContext(wrappedCode, ctx.vmContext, {
         timeout: 1000, // 1 second timeout
         breakOnSigint: true
       })

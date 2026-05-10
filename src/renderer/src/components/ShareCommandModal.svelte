@@ -75,6 +75,7 @@
       case 3: return 'Leave Event'
       case 4: return 'Ban Event'
       case 5: return 'Reaction Event'
+      case 6: return 'Bot Login Event'
       default: return 'Command'
     }
   }

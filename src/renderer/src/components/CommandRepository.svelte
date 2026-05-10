@@ -102,6 +102,7 @@
       case 3: return 'exit_to_app'
       case 4: return 'person_remove'
       case 5: return 'thumb_up'
+      case 6: return 'power_settings_new'
       default: return 'message'
     }
   }
@@ -114,6 +115,7 @@
       case 3: return 'Leave'
       case 4: return 'Ban'
       case 5: return 'Reaction'
+      case 6: return 'Bot Login'
       default: return 'Message'
     }
   }

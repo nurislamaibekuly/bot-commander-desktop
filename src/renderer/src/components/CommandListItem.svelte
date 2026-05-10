@@ -40,6 +40,7 @@
   const TYPE_MEMBER_LEAVE = 3
   const TYPE_MEMBER_BAN = 4
   const TYPE_REACTION = 5
+  const TYPE_BOT_LOGIN = 6
 
   function displayNameForCommand(command: BCFDCommand) {
     switch (command.type) {
@@ -53,6 +54,8 @@
         return 'Member Leave'
       case TYPE_MEMBER_BAN:
         return 'Member Ban'
+      case TYPE_BOT_LOGIN:
+        return 'Bot Login'
       default:
         return command.command
     }
@@ -73,6 +76,8 @@
         return 'person_remove'
       case TYPE_REACTION:
         return 'thumb_up'
+      case TYPE_BOT_LOGIN:
+        return 'power_settings_new'
       default:
         return 'message'
     }

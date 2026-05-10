@@ -122,6 +122,10 @@ export function Connect(event: Electron.IpcMainEvent, token: string) {
     partials: [Partials.Channel, Partials.Message, Partials.Reaction]
   })
 
+  client.on('ready', () => {
+    onBotLogin()
+  })
+
   client.once('ready', async () => {
     if (client == null) return
 
@@ -1068,6 +1072,30 @@ async function onGuildBanAdd(ban: GuildBan) {
 
     sendPrivateEmbed(command, ban.user, async (field) => field)
     privateMessage(command, ban.user, async () => command.privateMessage)
+  }
+}
+
+async function onBotLogin() {
+  if (!client) return
+
+  const filteredCommands = commands.bcfdCommands.filter((c) => c.type === 6)
+
+  for (const command of filteredCommands) {
+    for (const [, guild] of client.guilds.cache) {
+      if (command.serverWhitelist?.trim()) {
+        const ids = command.serverWhitelist.split(',').map((s) => s.trim())
+        if (!ids.includes(guild.id)) continue
+      }
+
+      const channel = command.isSpecificChannel
+        ? resolveSpecificGuildChannel(guild, command.specificChannel)
+        : getFirstSendableGuildChannel(guild)
+
+      if (channel) {
+        sendChannelEmbed(command, channel, async (field) => field)
+        channelMessage(command, channel, async () => command.channelMessage)
+      }
+    }
   }
 }
 

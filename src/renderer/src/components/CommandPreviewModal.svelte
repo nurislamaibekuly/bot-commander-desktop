@@ -19,6 +19,7 @@
   const TYPE_MEMBER_LEAVE = 3
   const TYPE_MEMBER_BAN = 4
   const TYPE_REACTION = 5
+  const TYPE_BOT_LOGIN = 6
 
   function getTypeName(type: number): string {
     switch (type) {
@@ -34,6 +35,8 @@
         return $t('member-ban')
       case TYPE_REACTION:
         return $t('reaction')
+      case TYPE_BOT_LOGIN:
+        return $t('bot-login')
       default:
         return 'Unknown'
     }

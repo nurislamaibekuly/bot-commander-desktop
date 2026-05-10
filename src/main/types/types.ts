@@ -58,12 +58,14 @@ export type BCFDCommandType =
   | TYPE_MEMBER_LEAVE
   | TYPE_MEMBER_BAN
   | TYPE_MEMBER_ADD
+  | TYPE_BOT_LOGIN
 export type TYPE_MESSAGE_RECEIVED = 0
 export type TYPE_PM_RECEIVED = 1
 export type TYPE_MEMBER_JOIN = 2
 export type TYPE_MEMBER_LEAVE = 3
 export type TYPE_MEMBER_BAN = 4
 export type TYPE_MEMBER_ADD = 5
+export type TYPE_BOT_LOGIN = 6
 
 export type BCFDSlashCommand = {
   commandName: string
